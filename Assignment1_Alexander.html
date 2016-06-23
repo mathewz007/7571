@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+
+<link rel="stylesheet" type="text/css" href="financial.css">
+<script src ="financial.js"></script>
+
+<title> Company Performance Calculator </title>
+
+<body>
+<h1> Company Performance Calculator</h1>
+
+<h2> Enter the below values</h2>
+
+<form name="calc" id = "calcid"> 
+Profit :$ 
+<input type="text" id="profit" name="profit" value="500000"/> </br>
+Total Assets :$ 
+<input type="text" id="assets" name="assets" value="800000"/> </br>
+Total Liabilities :$ 
+<input type="text" id="liab" name="liab" value="200000"/> </br>
+Intangible Assets :$ 
+<input type="text" id="intan" name="intan" value="300000"/> </br>
+Price per share :$ 
+<input type="text" id="pps" name="pps" value="10"/> </br>
+Avg number of Shares : 
+<input type="text" id="ans" name="ans" value="5000"/> </br>
+% Expected Growth:
+<input type="text" id="growth" name="growth" value="15"/> </br>s
+
+
+<h2> Financial Values </h2> 
+Earnings Per Share:
+<input type="text" name="EPS" id="EPS" value=""/> </br>
+Price To Book: 
+<input type="text" name="PB" id="PB" value=""/> </br>
+PE Ratio:
+<input type="text" name="PE" id="PE" value=""/> </br>
+Price to earnings growth:
+<input type="text" name="PEG" id="PEG" value=""/> </br>
+
+<p>
+
+<input type="button" name="Calculate" id="Calculate" value="Calculate" onclick="calculateValue();"/>
+
+<input type="reset" name="Reset" id="Reset" value="Reset" /> <br/>
+</p>
+</form>
+</head>
+</body>

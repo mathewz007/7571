@@ -1,0 +1,16 @@
+h1{ 
+text-align: center; 
+ }
+
+ h2{ 
+ align-content: left;
+  }
+html{
+  background-color: beige;
+}
+
+td{
+	border:1;
+	border-color: black;
+	border-style: solid;
+}
