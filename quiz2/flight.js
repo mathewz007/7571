@@ -1,71 +1,54 @@
+
 function recordFlight() {
 	// getting input values 
 
 	var flightnumber = document.getElementById("flight").value;
 	var miles = document.getElementById("miles").value;
 
-	console.log(flightnumber,miles);
+	localStorage.setItem(flightnumber,miles);
 
-	// gettig dispaly id's 
+	console.log(localStorage)
 
-	//grab the output variable 
-			var message = document.getElementById('msg');
-			var Results = document.getElementById('flyingmiles');
-			var status = document.getElementById('results');
+//create variable to hold data
+			var flightmiles = [];
+			if(localStorage.getItem('flightmiles'))
+			{
+				flightmiles = parse(localStorage.getItem('flightnumber'));
+			}
+document.getElementById("flyingmiles").innerHTML=myTable(flightmiles);
+document.getElementById("result").innerHTML = '<p>'+calculateMembership()+'</p>';
 
-
+}
 
 //create variable to hold input data
-			var flightmiles;
 
-	var flightmiles = [];
-			if(localStorage.getItem('flightNumber'))
+
+function myTable(flightmiles){
+	
+Table =" " ;
+Table += '<table>';
+Table += '<tr><th>Flight Number</th><th>Number of Miles Flown</th></tr>';
+		for(var i=0; i<flightmiles.length; i++)
 			{
-				flightmiles = parse(localStorage.getItem('flightNumber'));
+				Table += '<tr><td>'+flightmiles.flightNumber+'</td><td>'+flightmiles.miles+'</td></tr>';
 			}
-			console.log(flightmiles);
+Table += '</table>';
+console.log (Table);
 
- message.innerHTML= " ";
+return Table;
 }
 
-// spitting out the input variable 
 
-
-function table(flightmiles)
-
-		{  
-			var Table = '';
-			Table += '<table>';
-			Table += '<tr><th>Flight Number</th><th>Miles Flown</th></tr>';
-			for(var i=0; i<miles.length; i++)
-			{
-				Table += '<tr><td>'+flightmiles[i].flightNumber+'</td><td>'+flightmiles.miles+'</td></tr>';
-			}
-			Table += '</table>';
-			
-			return Table;
-			console.log(Table);
-
-}
-
-		// function to store the values into local storage 
-
-function saveFlight(flightmiles) {
-
-	local.storage.setItem(flightnumber,miles);
-}
-
-// spitting out the  medallion status 
-
+// calcualte points
 function calculateMembership()
 		{
-			console.log("calculate membership");
+		
 			var entries;
 			var points = 0;
 			
 			if(localStorage.getItem('flightmiles'))
 			{
-				entries = parse(localStorage.getItem('flightmiles'));
+				entries = JSON.parse(localStorage.getItem('flightmiles'));
 				
 				for(var i=0; i<entries.length; i++)
 				{
@@ -81,8 +64,4 @@ function calculateMembership()
 				return "Gold";
 		}
 
-
-
-
-// checking for duplicat entry 
-
+	
