@@ -11,31 +11,66 @@ function recordFlight() {
 
 //create variable to hold data
 			var flightmiles = [];
-			if(localStorage.getItem('flightmiles'))
+			if(localStorage.getItem('flightnumber'))
 			{
-				flightmiles = parse(localStorage.getItem('flightnumber'));
+				flight = parse(localStorage.getItem('flightnumber'));
 			}
-document.getElementById("flyingmiles").innerHTML=myTable(flightmiles);
-document.getElementById("result").innerHTML = '<p>'+calculateMembership()+'</p>';
+			// duplicate check 
 
+				if( !checkDuplicate(flightnumber))
+				{
+					//  need to fix 
+					//var newEntry = flightnumber,miles
+					
+					document.getElementById("flyingmiles").innerHTML= myTable(flight);;
+					
+					//save the data the local storage
+					localStorage.setItem(flightnumber,miles);
+					document.getElementById("result").innerHTML = '<p>'+calculateMembership()+'</p>';
+				}
+				else
+					document.getElementById("msg").innerHTML = "<p <strong>You have entered a flight number that already exists.Please re-enter.</strong></p>"
+		
 }
 
-//create variable to hold input data
 
-
-function myTable(flightmiles){
+function myTable(flight){
 	
 Table =" " ;
 Table += '<table>';
 Table += '<tr><th>Flight Number</th><th>Number of Miles Flown</th></tr>';
-		for(var i=0; i<flightmiles.length; i++)
+		for(var i=0; i<flight.length; i++)
 			{
-				Table += '<tr><td>'+flightmiles.flightNumber+'</td><td>'+flightmiles.miles+'</td></tr>';
+				Table += '<tr><td>'+flight.flightNumber+'</td><td>'+flight.miles+'</td></tr>';
 			}
 Table += '</table>';
 console.log (Table);
 
 return Table;
+}
+
+function checkDuplicate(flightNumber)
+		{
+			
+			var milesFromstorage;
+			
+			//retrieve from local storage an existing set of data, if non then just return false
+			if(localStorage.getItem('flightnumber'))
+				milesFromStorage = parse(localStorage.getItem('flightnumber'));
+			else
+				return false;
+			
+			//loop through the return objects to check for a match on the flight number
+			for(var i=0; i<milesFromStorage.length; i++)
+			{
+				if(milesFromStorage[i].flightNumber === flightNumber)
+					return true;
+			}
+			
+			return false;
+		
+		
+		console.log(milesFromStorage);
 }
 
 
@@ -46,9 +81,9 @@ function calculateMembership()
 			var entries;
 			var points = 0;
 			
-			if(localStorage.getItem('flightmiles'))
+			if(localStorage.getItem('flightnumber'))
 			{
-				entries = JSON.parse(localStorage.getItem('flightmiles'));
+				entries = JSON.parse(localStorage.getItem('flightnumber'));
 				
 				for(var i=0; i<entries.length; i++)
 				{
