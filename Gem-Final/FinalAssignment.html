@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+   
+   <head>
+   
+       <title>Hidden Gem Game </title>
+   
+        <link rel="stylesheet" type="text/css" href="gem.css">
+       
+        
+   </head>
+   
+   <body>
+   
+       <h1>Find the Hidden Gem!</h1>
+
+       <section>
+  <h2> Guess which cell contains the hidden gem </h2>
+
+  <p> Enter a number between 1 - 9 for any of the blocks below and see if you find the  hidden gem!</p>
+</section>
+
+<section>
+<label> Enter Number</label>
+  <input type="text" name="guessing" value="" id="guessing">
+</section>
+          <p> 
+           <input type="button" value="Guess" id="guess" onclick="calcGuess();"/>
+       
+           <input type="button" value="Reset" id="reset" onclick="calcReset();"/>
+</p>
+        
+
+        
+           
+            
+            <div id="block1">
+              1
+            </div>
+            
+            <div id="block2">
+              2
+            </div>
+            <div id="block3">
+              3
+            </div> <br />
+
+            <div id="block4">
+              4
+            </div>
+            
+            <div id="block5">
+              5
+            </div>
+            <div id="block6">
+              6
+            </div><br />
+            <div id="block7">
+              7
+            </div>
+            
+            <div id="block8">
+              8
+            </div>
+            <div id="block9">
+             9
+            </div><br />
+            
+        
+<section>
+<div id="msg" >
+
+</div>
+</section>
+
+        
+
+        <script type="text/javascript">
+    
+var gem = Math.floor((Math.random() * 9) + 1);
+
+console.log(gem);
+
+var block = [];
+
+for( var i = 1; i < 10; i++){
+    block[i] = document.getElementById("block"+i);
+}
+
+console.log(block);
+    
+function calcGuess(){
+    var number = document.getElementById("guessing").value;
+    if(number == gem){
+        block[number].innerHTML = "X";
+        document.getElementById("msg").innerHTML= "Congrats! you found the gem!" ;
+    }
+    else if(
+        number < 1  || number> 9 ) 
+       {
+        document.getElementById("msg").innerHTML="You have entered an invalid number";
+    } 
+
+    else{
+        block[number].innerHTML ="0";
+        document.getElementById("msg").innerHTML="Sorry Try Again!";
+       } 
+    }
+
+function calcReset(){
+    gem = Math.floor((Math.random() * 9)+1);
+    console.log("New Random number: " + gem);
+    document.getElementById("guessing").value= "";
+    for (var i = 0; i < 10; i++) {
+      block[i].innerHTML= i };
+
+    document.getElementById("msg").innerHTML = "You have successfully reset the game" 
+}
+
+
+</script>
+  
+
+   </body>
+      
+</html>
